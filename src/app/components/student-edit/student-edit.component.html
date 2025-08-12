@@ -1,0 +1,125 @@
+<div class="container mt-4">
+  <div class="card shadow-lg rounded">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        <i class="bi bi-pencil-square me-2"></i> Edit Student
+      </h4>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="updateStudent()" #studentForm="ngForm">
+        <!-- Name -->
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input
+            class="form-control"
+            [(ngModel)]="student.name"
+            name="name"
+            required
+          />
+        </div>
+
+        <!-- Age, Gender, Class -->
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="student.age"
+              name="age"
+              required
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Gender</label>
+            <select
+              class="form-select"
+              [(ngModel)]="student.gender"
+              name="gender"
+              required
+            >
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Class</label>
+            <input
+              class="form-control"
+              [(ngModel)]="student.class"
+              name="class"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Section -->
+        <div class="mb-3">
+          <label class="form-label">Section</label>
+          <input
+            class="form-control"
+            [(ngModel)]="student.section"
+            name="section"
+            required
+          />
+        </div>
+
+        <!-- Subjects -->
+        <div class="mb-3">
+          <label class="form-label">Subjects</label>
+          <div class="row">
+            <div class="col-md-6" *ngFor="let sub of allSubjects">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [checked]="student.subjects.includes(sub)"
+                  (change)="onCheckboxChange(sub, $event)"
+                  id="{{ sub }}"
+                />
+                <label class="form-check-label" for="{{ sub }}">{{
+                  sub
+                }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="student.contact.email"
+            name="email"
+            required
+          />
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label class="form-label">Phone</label>
+          <input
+            type="tel"
+            class="form-control"
+            [(ngModel)]="student.contact.phone"
+            name="phone"
+            required
+          />
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-success me-2">
+            <i class="bi bi-save me-1"></i> Save
+          </button>
+          <a routerLink="/students" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-1"></i> Back
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold text-primary">🎓 Student List</h2>
+    <a routerLink="/students/add" class="btn btn-success"> ➕ Add Student </a>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <table class="table table-hover table-striped mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Class</th>
+            <th>Section</th>
+            <th>Subjects</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of students">
+            <td>{{ s.name }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.gender }}</td>
+            <td>{{ s.class }}</td>
+            <td>{{ s.section }}</td>
+            <td>
+              <span class="badge bg-info me-1" *ngFor="let subj of s.subjects">
+                {{ subj }}
+              </span>
+            </td>
+            <td>{{ s.contact.email }}</td>
+            <td>{{ s.contact.phone }}</td>
+            <td class="text-center">
+              <button
+                class="btn btn-sm btn-primary me-2"
+                (click)="editStudent(s.id)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteStudent(s.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { StudentListComponent } from './components/student-list/student-list.component';
+import { StudentFormComponent } from './components/student-form/student-form.component';
+import { StudentEditComponent } from './components/student-edit/student-edit.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'students', pathMatch: 'full' },
+  { path: 'students', component: StudentListComponent },
+  { path: 'students/add', component: StudentFormComponent },
+  { path: 'students/edit/:id', component: StudentEditComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
