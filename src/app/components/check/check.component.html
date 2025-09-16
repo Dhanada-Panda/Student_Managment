@@ -1,0 +1,101 @@
+<div class="container mt-3">
+  <!-- Premium Header Paper -->
+  <mat-card class="custom-paper mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h6 class="mb-0">
+        Premium
+        <span class="text-success ms-1"
+          ><mat-icon>check_circle</mat-icon> Paid</span
+        >
+      </h6>
+      <small class="text-muted">Paid On - {{ payment.paidOn }}</small>
+    </div>
+  </mat-card>
+
+  <!-- ASBA Payment Paper -->
+  <mat-card class="custom-paper p-0">
+    <!-- Title Row -->
+    <div class="d-flex justify-content-between align-items-center p-3">
+      <h6 class="fw-bold mb-0">ASBA Payment</h6>
+      <small class="text-muted">Last Updated - {{ payment.lastUpdated }}</small>
+    </div>
+
+    <!-- Dotted Divider -->
+    <mat-divider class="dashed-divider"></mat-divider>
+
+    <!-- Premium & Payment Status -->
+    <div class="row align-items-center m-3">
+      <!-- Premium Status (col-3) -->
+      <div class="col-3 border-end">
+        <div class="d-flex align-items-center gap-2">
+          <p class="mb-1 fw-bold">Premium Status</p>
+          <span class="badge bg-danger d-flex align-items-center">
+            <mat-icon style="font-size: 14px" class="me-1">error</mat-icon>
+            {{ payment.premiumStatus }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Payment Status (col-3) -->
+      <div class="col-3 border-end">
+        <div class="d-flex align-items-center gap-2">
+          <p class="mb-1 fw-bold">Payment Status</p>
+          <span class="badge bg-warning text-dark d-flex align-items-center">
+            <mat-icon style="font-size: 14px" class="me-1">schedule</mat-icon>
+            {{ payment.paymentStatus }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nested Gray Paper -->
+    <mat-card class="inner-paper m-3 p-0">
+      <!-- Row 1 -->
+      <div class="row m-0 p-3">
+        <div class="col-md-3 border-end">
+          <p class="text-muted mb-1">ASBA Registration Number</p>
+          <p class="fw-bold">{{ payment.asbaRegNumber }}</p>
+        </div>
+
+        <div class="col-md-3 border-end">
+          <p class="text-muted mb-1">Requested Amount</p>
+          <p class="fw-bold">₹ {{ payment.requestedAmount }}</p>
+        </div>
+
+        <div class="col-md-3 border-end">
+          <p class="text-muted mb-1">Premium Amount</p>
+          <p class="fw-bold">₹ {{ payment.premiumAmount }}</p>
+        </div>
+
+        <div class="col-md-3">
+          <p class="text-muted mb-1">Payment Mode</p>
+          <p class="fw-bold">{{ payment.paymentMode }}</p>
+        </div>
+      </div>
+
+      <!-- Dotted Divider -->
+      <mat-divider class="dashed-divider"></mat-divider>
+
+      <!-- Row 2 -->
+      <div class="row m-0 p-3">
+        <div class="col-md-4">
+          <p class="text-muted mb-1">Expiry Date</p>
+          <p class="fw-bold">{{ payment.expiryDate }}</p>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-divider class="dashed-divider"></mat-divider>
+
+    <!-- Buttons -->
+   <div class="d-flex justify-content-end gap-2 p-3">
+  <button mat-raised-button class="btn-yellow text-dark">
+    Download Receipt
+  </button>
+  <button mat-stroked-button color="primary">
+    Retrigger Communication
+  </button>
+</div>
+
+  </mat-card>
+</div>
