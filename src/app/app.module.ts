@@ -13,20 +13,33 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CheckComponent } from './components/check/check.component';
+import { ChequeComponent } from './components/cheque/cheque.component';
+import { AsbaComponent } from './components/asba/asba.component';
+import { OnlineComponent } from './components/online/online.component';
+import { NotpaidComponent } from './components/notpaid/notpaid.component';
 @NgModule({
   declarations: [
     AppComponent,
     StudentListComponent,
     StudentFormComponent,
     StudentEditComponent,
-    CheckComponent
+    CheckComponent,
+    ChequeComponent,
+    AsbaComponent,
+    OnlineComponent,
+    NotpaidComponent,
   ],
-  imports: [FormsModule, BrowserModule, AppRoutingModule, HttpClientModule,  MatCardModule,
+  imports: [
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatCardModule,
     MatButtonModule,
-    MatIconModule , MatDividerModule],
-  providers: [
-    provideAnimationsAsync()
+    MatIconModule,
+    MatDividerModule,
   ],
+  providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

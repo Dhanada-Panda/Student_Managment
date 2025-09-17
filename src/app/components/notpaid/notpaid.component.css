@@ -1,19 +1,10 @@
-.inner-paper {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-}
-/* .badge {
-  font-size: 0.85rem;
-  padding: 0.35em 0.8em;
-  border-radius: 20px;
-} */
 .dashed-divider {
   border-top: 1px dashed rgba(0, 0, 0, 0.3) !important;
 }
 
 .custom-paper {
   background-color: #ffffff;
-  border: 1px solid #cef0e8;
+  border: 1px solid #fccccc;
 }
 
 .btn-yellow {

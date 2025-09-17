@@ -1,0 +1,47 @@
+<div class="container mt-3" style="font-family: mulish">
+  <mat-card class="custom-paper p-0">
+    <div class="d-flex justify-content-between align-items-center p-3">
+      <div class="d-flex flex-row">
+        <h6
+          class="mb-2 mb-sm-0 d-flex align-items-center"
+          style="font-weight: 700; font-size: 14px"
+        >
+          <span>Premium -</span>
+        </h6>
+        <span class="text-dark ms-2 d-flex align-items-center">
+          <mat-icon class="me-1 small-icon text-danger">error</mat-icon>
+          Not Paid
+        </span>
+      </div>
+      <small class="text-muted">Last Updated - {{ payment.lastUpdated }}</small>
+    </div>
+
+    <!-- Dotted Divider -->
+    <mat-divider class="dashed-divider m-3"></mat-divider>
+    <!-- Row 1 -->
+    <div class="row m-0 p-3 d-flex justify-content-between align-items-center">
+      <!-- Premium Amount -->
+      <div class="col-md d-flex flex-row gap-2">
+        <p class="text-muted mb-1">Premium Amount</p>
+        <p class="fw-bold">₹ {{ payment.premiumAmount }}</p>
+      </div>
+
+      <!-- Send Payment Link Button -->
+      <div class="col-auto ms-auto">
+        <button
+          mat-raised-button
+          class="btn-yellow text-dark rounded-0"
+          style="
+            background-color: #ffc107;
+            font-family: Mulish;
+            border-radius: 4px;
+            font-weight: 700;
+            padding: 8px 16px;
+          "
+        >
+          Send Payment Link
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

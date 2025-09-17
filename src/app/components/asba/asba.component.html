@@ -41,8 +41,13 @@
         <div class="d-flex align-items-center gap-2">
           <p class="mb-1">Premium Status</p>
           <span
-            class="badge bg-danger d-flex align-items-center rounded-pill px-2"
-            style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
+            class="badge d-flex align-items-center rounded-pill px-2"
+            style="
+              background-color: #cce0f5;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              line-height: 1.2;
+            "
           >
             <mat-icon
               class="me-1"
@@ -63,8 +68,13 @@
         <div class="d-flex align-items-center gap-2">
           <p class="mb-1">Payment Status</p>
           <span
-            class="badge bg-warning text-dark d-flex align-items-center rounded-pill px-2"
-            style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
+            class="badge text-dark d-flex align-items-center rounded-pill px-2"
+            style="
+              background-color: #e2d3f1;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              line-height: 1.2;
+            "
           >
             <mat-icon
               style="
@@ -72,7 +82,7 @@
                 line-height: 1;
                 transform: translateY(2px);
               "
-              >schedule</mat-icon
+              >check_circle</mat-icon
             >
             <span>{{ payment.paymentStatus }}</span>
           </span>
@@ -132,18 +142,6 @@
         "
       >
         Download Receipt
-      </button>
-      <button
-        mat-stroked-button
-        class="text-dark border-dark rounded-0 p-8"
-        style="
-          border-radius: 4px;
-          font-family: Mulish;
-          border-radius: 4px;
-          font-weight: 700;
-        "
-      >
-        Retrigger Communication
       </button>
     </div>
   </mat-card>

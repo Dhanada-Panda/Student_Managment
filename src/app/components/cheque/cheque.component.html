@@ -27,7 +27,7 @@
   <mat-card class="custom-paper p-0">
     <!-- Title Row -->
     <div class="d-flex justify-content-between align-items-center p-3">
-      <h6 class="fw-bold mb-0" style="font-size: 14px">ASBA Payment</h6>
+      <h6 class="fw-bold mb-0" style="font-size: 14px">Cheque Payment</h6>
       <small class="text-muted">Last Updated - {{ payment.lastUpdated }}</small>
     </div>
 
@@ -41,8 +41,13 @@
         <div class="d-flex align-items-center gap-2">
           <p class="mb-1">Premium Status</p>
           <span
-            class="badge bg-danger d-flex align-items-center rounded-pill px-2"
-            style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
+            class="badge d-flex align-items-center rounded-pill px-2"
+            style="
+              background-color: #cef0e8;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              line-height: 1.2;
+            "
           >
             <mat-icon
               class="me-1"
@@ -63,8 +68,13 @@
         <div class="d-flex align-items-center gap-2">
           <p class="mb-1">Payment Status</p>
           <span
-            class="badge bg-warning text-dark d-flex align-items-center rounded-pill px-2"
-            style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
+            class="badge text-dark d-flex align-items-center rounded-pill px-2"
+            style="
+              background-color: #fccccc;
+              padding-top: 2px;
+              padding-bottom: 2px;
+              line-height: 1.2;
+            "
           >
             <mat-icon
               style="
@@ -85,37 +95,27 @@
       <!-- Row 1 -->
       <div class="row m-0 p-3">
         <div class="col-md border-end">
-          <p class="text-muted mb-1">ASBA Registration Number</p>
+          <p class="text-muted mb-1">Cheque Number</p>
           <p class="fw-bold text-wrap">{{ payment.asbaRegNumber }}</p>
-        </div>
-
-        <div class="col-md border-end">
-          <p class="text-muted mb-1">Requested Amount</p>
-          <p class="fw-bold">₹ {{ payment.requestedAmount }}</p>
         </div>
 
         <div class="col-md border-end">
           <p class="text-muted mb-1">Premium Amount</p>
           <p class="fw-bold">₹ {{ payment.premiumAmount }}</p>
         </div>
-
-        <div class="col-md">
-          <p class="text-muted mb-1">Payment Mode</p>
-          <p class="fw-bold">{{ payment.paymentMode }}</p>
-        </div>
       </div>
 
       <!-- Dotted Divider -->
-      <mat-divider class="dashed-divider m-3"></mat-divider>
-
-      <!-- Row 2 -->
-      <div class="row m-0 p-3">
-        <div class="col-md">
-          <p class="text-muted mb-1">Expiry Date</p>
-          <p class="fw-bold">{{ payment.expiryDate }}</p>
-        </div>
-      </div>
     </mat-card>
+    <div class="d-flex align-items-center m-3 text-danger">
+      <mat-icon style="font-size: 20px; margin-right: 8px; color: red">
+        report_problem
+      </mat-icon>
+      <p class="mb-0">
+        Payment has bounced. Please retrigger communication to notify the
+        customer.
+      </p>
+    </div>
 
     <mat-divider class="dashed-divider m-3"></mat-divider>
 
