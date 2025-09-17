@@ -1,13 +1,15 @@
 <div class="container mt-3">
   <!-- Premium Header Paper -->
   <mat-card class="custom-paper mb-3">
-    <div class="d-flex justify-content-between align-items-center">
-      <h6 class="mb-0">
-        Premium
-        <span class="text-success ms-1"
-          ><mat-icon>check_circle</mat-icon> Paid</span
-        >
+    <div class="d-flex justify-content-between align-items-center p-3">
+      <h6 class="mb-0 d-flex align-items-center">
+        <span>Premium -</span>
+        <span class="text-success ms-2 d-flex align-items-center">
+          <mat-icon class="me-1">check_circle</mat-icon>
+          Paid
+        </span>
       </h6>
+
       <small class="text-muted">Paid On - {{ payment.paidOn }}</small>
     </div>
   </mat-card>
@@ -21,16 +23,16 @@
     </div>
 
     <!-- Dotted Divider -->
-    <mat-divider class="dashed-divider"></mat-divider>
+    <mat-divider class="dashed-divider m-3"></mat-divider>
 
     <!-- Premium & Payment Status -->
     <div class="row align-items-center m-3">
       <!-- Premium Status (col-3) -->
       <div class="col-3 border-end">
         <div class="d-flex align-items-center gap-2">
-          <p class="mb-1 fw-bold">Premium Status</p>
-          <span class="badge bg-danger d-flex align-items-center">
-            <mat-icon style="font-size: 14px" class="me-1">error</mat-icon>
+          <p class="mb-1">Premium Status</p>
+          <span class="badge bg-danger text-dark align-items-center">
+            <!-- <mat-icon style="font-size: 14px" class="me-1">error</mat-icon> -->
             {{ payment.premiumStatus }}
           </span>
         </div>
@@ -39,10 +41,12 @@
       <!-- Payment Status (col-3) -->
       <div class="col-3 border-end">
         <div class="d-flex align-items-center gap-2">
-          <p class="mb-1 fw-bold">Payment Status</p>
-          <span class="badge bg-warning text-dark d-flex align-items-center">
-            <mat-icon style="font-size: 14px" class="me-1">schedule</mat-icon>
-            {{ payment.paymentStatus }}
+          <p class="mb-1">Payment Status</p>
+          <span
+            class="badge bg-warning text-dark d-flex align-items-center gap-1"
+          >
+            <mat-icon class="me-1 small-icon">schedule</mat-icon>
+            <span>{{ payment.paymentStatus }}</span>
           </span>
         </div>
       </div>
@@ -74,7 +78,7 @@
       </div>
 
       <!-- Dotted Divider -->
-      <mat-divider class="dashed-divider"></mat-divider>
+      <mat-divider class="dashed-divider m-3"></mat-divider>
 
       <!-- Row 2 -->
       <div class="row m-0 p-3">
@@ -85,17 +89,16 @@
       </div>
     </mat-card>
 
-    <mat-divider class="dashed-divider"></mat-divider>
+    <mat-divider class="dashed-divider m-3"></mat-divider>
 
     <!-- Buttons -->
-   <div class="d-flex justify-content-end gap-2 p-3">
-  <button mat-raised-button class="btn-yellow text-dark">
-    Download Receipt
-  </button>
-  <button mat-stroked-button color="primary">
-    Retrigger Communication
-  </button>
-</div>
-
+    <div class="d-flex justify-content-end gap-2 p-3">
+      <button mat-raised-button class="btn-yellow text-dark">
+        Download Receipt
+      </button>
+      <button mat-stroked-button color="primary">
+        Retrigger Communication
+      </button>
+    </div>
   </mat-card>
 </div>

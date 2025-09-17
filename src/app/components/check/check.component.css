@@ -6,11 +6,6 @@
   background-color: #f5f5f5;
   border-radius: 8px;
 }
-
-.dotted-divider {
-  border-top: 1px dotted #bbb;
-}
-
 .badge {
   font-size: 0.85rem;
   padding: 0.35em 0.8em;
@@ -21,6 +16,6 @@
   margin: 8px 0;
 }
 .btn-yellow {
-  background-color: #ffc107 !important; 
+  background-color: #ffc107 !important;
   color: #212529 !important;
 }
