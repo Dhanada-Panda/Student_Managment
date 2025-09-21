@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CheckComponent } from './components/check/check.component';
 import { ChequeComponent } from './components/cheque/cheque.component';
@@ -38,6 +39,7 @@ import { NotpaidComponent } from './components/notpaid/notpaid.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatExpansionModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

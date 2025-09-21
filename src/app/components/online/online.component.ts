@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./online.component.css'],
 })
 export class OnlineComponent {
-  step = 0; // 0 = not paid, 1 = asba, 2 = online, 3 = asba again, 4 = cheque
+  step = 0;
 
   payments = {
     notpaid: {
