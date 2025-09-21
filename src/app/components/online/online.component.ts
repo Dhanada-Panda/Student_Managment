@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class OnlineComponent {
   step = 0;
+  isExpanded = true;
 
   payments = {
     notpaid: {

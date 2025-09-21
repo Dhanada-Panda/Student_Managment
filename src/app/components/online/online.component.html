@@ -16,6 +16,8 @@
     <mat-card class="custom-paper mb-3" style="border: 1px solid red">
       <div
         class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center p-3"
+        (click)="isExpanded = !isExpanded"
+        style="cursor: pointer"
       >
         <div class="d-flex flex-row">
           <h6
@@ -32,30 +34,34 @@
         <small class="text-muted"
           >Last Updated - {{ payments.notpaid.lastUpdated }}</small
         >
+        <mat-icon>
+          {{ isExpanded ? "expand_less" : "expand_more" }}
+        </mat-icon>
       </div>
+      <div *ngIf="isExpanded">
+        <mat-divider class="dashed-divider m-3"></mat-divider>
 
-      <mat-divider class="dashed-divider m-3"></mat-divider>
-
-      <div
-        class="row m-0 p-3 d-flex justify-content-between align-items-center"
-      >
-        <div class="col-md d-flex flex-row gap-2">
-          <p class="text-muted mb-1">Premium Amount</p>
-          <p class="fw-bold">₹ {{ payments.notpaid.premiumAmount }}</p>
-        </div>
-        <div class="col-auto ms-auto">
-          <button
-            mat-raised-button
-            class="btn-yellow text-dark rounded"
-            style="
-              background-color: #ffc107;
-              font-family: Mulish;
-              font-weight: 700;
-              border-radius: 4px;
-            "
-          >
-            Send Payment Link
-          </button>
+        <div
+          class="row m-0 p-3 d-flex justify-content-between align-items-center"
+        >
+          <div class="col-md d-flex flex-row gap-2">
+            <p class="text-muted mb-1">Premium Amount</p>
+            <p class="fw-bold">₹ {{ payments.notpaid.premiumAmount }}</p>
+          </div>
+          <div class="col-auto ms-auto">
+            <button
+              mat-raised-button
+              class="btn-yellow text-dark rounded"
+              style="
+                background-color: #ffc107;
+                font-family: Mulish;
+                font-weight: 700;
+                border-radius: 4px;
+              "
+            >
+              Send Payment Link
+            </button>
+          </div>
         </div>
       </div>
     </mat-card>
@@ -93,8 +99,13 @@
 
     <!-- Payment Details -->
     <mat-card class="custom-paper p-0">
-      <!-- Title -->
-      <div class="d-flex justify-content-between align-items-center p-3">
+      <!-- Header -->
+      <div
+        class="d-flex justify-content-between align-items-center p-3"
+        (click)="isExpanded = !isExpanded"
+        style="cursor: pointer"
+      >
+        <!-- Left: Title -->
         <h6 class="fw-bold mb-0" style="font-size: 14px">
           {{
             step === 1
@@ -106,144 +117,190 @@
               : "Cheque Payment"
           }}
         </h6>
-        <small class="text-muted" *ngIf="currentPayment?.lastUpdated"
-          >Last Updated - {{ currentPayment.lastUpdated }}</small
-        >
-      </div>
 
-      <mat-divider class="dashed-divider m-3"></mat-divider>
-
-      <!-- Premium & Payment Status -->
-      <div class="row align-items-center m-3">
-        <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3 border-end mb-2 mb-sm-0"
-          *ngIf="currentPayment?.premiumStatus"
-        >
-          <div class="d-flex align-items-center gap-2">
-            <p class="mb-1">Premium Status</p>
-            <span
-              class="badge bg-danger d-flex align-items-center rounded-pill px-2"
-              style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
-            >
-              <mat-icon
-                class="me-1"
-                style="
-                  font-size: 18px;
-                  line-height: 1;
-                  transform: translateY(2px);
-                "
-                >error</mat-icon
-              >
-              <span>{{ currentPayment.premiumStatus }}</span>
-            </span>
-          </div>
-        </div>
-
-        <div
-          class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2 mb-sm-0"
-          *ngIf="currentPayment?.paymentStatus"
-        >
-          <div class="d-flex align-items-center gap-2">
-            <p class="mb-1">Payment Status</p>
-            <span
-              class="badge bg-warning text-dark d-flex align-items-center rounded-pill px-2"
-              style="padding-top: 2px; padding-bottom: 2px; line-height: 1.2"
-            >
-              <mat-icon
-                style="
-                  font-size: 18px;
-                  line-height: 1;
-                  transform: translateY(2px);
-                "
-                >schedule</mat-icon
-              >
-              <span>{{ currentPayment.paymentStatus }}</span>
-            </span>
-          </div>
+        <!-- Right: Last Updated + Icon -->
+        <div class="d-flex align-items-center gap-2">
+          <small class="text-muted" *ngIf="currentPayment?.lastUpdated">
+            Last Updated - {{ currentPayment.lastUpdated }}
+          </small>
+          <mat-icon>{{ isExpanded ? "expand_less" : "expand_more" }}</mat-icon>
         </div>
       </div>
+      <div *ngIf="isExpanded">
+        <mat-divider class="dashed-divider m-0"></mat-divider>
 
-      <!-- Nested Gray Paper -->
-      <mat-card class="inner-paper m-3 p-0">
-        <div class="row m-0 p-3">
-          <div class="col-md border-end" *ngIf="currentPayment?.asbaRegNumber">
-            <p class="text-muted mb-1">ASBA Registration Number</p>
-            <p class="fw-bold text-wrap">{{ currentPayment.asbaRegNumber }}</p>
-          </div>
-
+        <!-- Accordion Body -->
+        <!-- Premium & Payment Status -->
+        <div class="row align-items-center m-3">
+          <!-- Premium Status -->
           <div
-            class="col-md border-end"
-            *ngIf="currentPayment?.requestedAmount"
+            class="col-12 col-sm-6 col-md-4 col-lg-3 border-end mb-2 mb-sm-0"
+            *ngIf="currentPayment?.premiumStatus"
           >
-            <p class="text-muted mb-1">Requested Amount</p>
-            <p class="fw-bold">₹ {{ currentPayment.requestedAmount }}</p>
-          </div>
-
-          <div class="col-md border-end" *ngIf="currentPayment?.premiumAmount">
-            <p class="text-muted mb-1">Premium Amount</p>
-            <p class="fw-bold">₹ {{ currentPayment.premiumAmount }}</p>
-          </div>
-
-          <div class="col-md" *ngIf="currentPayment?.paymentMode">
-            <p class="text-muted mb-1">Payment Mode</p>
-            <p class="fw-bold">{{ currentPayment.paymentMode }}</p>
-          </div>
-        </div>
-
-        <!-- Expiry Date (only if exists) -->
-        <ng-container *ngIf="currentPayment?.expiryDate">
-          <mat-divider class="dashed-divider m-3"></mat-divider>
-          <div class="row m-0 p-3">
-            <div class="col-md">
-              <p class="text-muted mb-1">Expiry Date</p>
-              <p class="fw-bold">{{ currentPayment.expiryDate }}</p>
+            <div class="d-flex align-items-center gap-2">
+              <p class="mb-1">Premium Status</p>
+              <span
+                class="badge d-flex align-items-center rounded-pill px-2"
+                [ngClass]="{
+                  'bg-success text-white':
+                    currentPayment.premiumStatus === 'Deficit',
+                  'bg-danger text-white':
+                    currentPayment.premiumStatus === 'Sufficient',
+                  'bg-secondary text-white':
+                    currentPayment.premiumStatus === 'Excess'
+                }"
+                [ngStyle]="{
+                  border:
+                    currentPayment.premiumStatus === 'Deficit'
+                      ? '1px solid red'
+                      : '1px solid transparent',
+                  paddingTop: '2px',
+                  paddingBottom: '2px',
+                  lineHeight: '1.2'
+                }"
+              >
+                <mat-icon
+                  class="me-1"
+                  style="
+                    font-size: 18px;
+                    line-height: 1;
+                    transform: translateY(2px);
+                  "
+                  >error</mat-icon
+                >
+                <span>{{ currentPayment.premiumStatus }}</span>
+              </span>
             </div>
           </div>
-        </ng-container>
-      </mat-card>
-      <div
-        class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center p-3 text-danger"
-        *ngIf="currentPayment?.paymentStatus === 'Bounced'"
-      >
-        <mat-icon style="font-size: 20px; margin-right: 8px; color: red">
-          report_problem
-        </mat-icon>
-        <p class="mb-0">
-          Payment has bounced. Please retrigger communication to notify the
-          customer.
-        </p>
-      </div>
 
-      <mat-divider class="dashed-divider m-3"></mat-divider>
+          <!-- Payment Status -->
+          <div
+            class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2 mb-sm-0"
+            *ngIf="currentPayment?.paymentStatus"
+          >
+            <div class="d-flex align-items-center gap-2">
+              <p class="mb-1">Payment Status</p>
+              <span
+                class="badge d-flex align-items-center rounded-pill px-2"
+                [ngClass]="{
+                  'bg-success text-white':
+                    currentPayment.paymentStatus === 'Refund',
+                  'bg-warning text-dark':
+                    currentPayment.paymentStatus === 'Pending',
+                  'bg-danger text-white':
+                    currentPayment.paymentStatus === 'Bounced'
+                }"
+                [ngStyle]="{
+                  border:
+                    currentPayment.paymentStatus === 'Failed'
+                      ? '1px solid red'
+                      : '1px solid transparent',
+                  paddingTop: '2px',
+                  paddingBottom: '2px',
+                  lineHeight: '1.2'
+                }"
+              >
+                <mat-icon
+                  style="
+                    font-size: 18px;
+                    line-height: 1;
+                    transform: translateY(2px);
+                  "
+                  >schedule</mat-icon
+                >
+                <span>{{ currentPayment.paymentStatus }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
 
-      <!-- Buttons -->
-      <div class="d-flex justify-content-end gap-2 p-3">
-        <button
-          mat-raised-button
-          class="btn-yellow text-dark rounded p-8"
-          *ngIf="currentPayment?.paidOn"
-          style="
-            background-color: #ffc107;
-            font-family: Mulish;
-            border-radius: 4px;
-            font-weight: 700;
-          "
+        <!-- Nested Gray Paper -->
+        <mat-card class="inner-paper m-3 p-0">
+          <div class="row m-0 p-3">
+            <div
+              class="col-md border-end"
+              *ngIf="currentPayment?.asbaRegNumber"
+            >
+              <p class="text-muted mb-1">ASBA Registration Number</p>
+              <p class="fw-bold text-wrap">
+                {{ currentPayment.asbaRegNumber }}
+              </p>
+            </div>
+
+            <div
+              class="col-md border-end"
+              *ngIf="currentPayment?.requestedAmount"
+            >
+              <p class="text-muted mb-1">Requested Amount</p>
+              <p class="fw-bold">₹ {{ currentPayment.requestedAmount }}</p>
+            </div>
+
+            <div
+              class="col-md border-end"
+              *ngIf="currentPayment?.premiumAmount"
+            >
+              <p class="text-muted mb-1">Premium Amount</p>
+              <p class="fw-bold">₹ {{ currentPayment.premiumAmount }}</p>
+            </div>
+
+            <div class="col-md" *ngIf="currentPayment?.paymentMode">
+              <p class="text-muted mb-1">Payment Mode</p>
+              <p class="fw-bold">{{ currentPayment.paymentMode }}</p>
+            </div>
+          </div>
+
+          <!-- Expiry Date -->
+          <ng-container *ngIf="currentPayment?.expiryDate">
+            <mat-divider class="dashed-divider m-3"></mat-divider>
+            <div class="row m-0 p-3">
+              <div class="col-md">
+                <p class="text-muted mb-1">Expiry Date</p>
+                <p class="fw-bold">{{ currentPayment.expiryDate }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </mat-card>
+
+        <!-- Bounced Warning -->
+        <div
+          class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center p-3 text-danger"
+          *ngIf="currentPayment?.paymentStatus === 'Bounced'"
         >
-          Download Receipt
-        </button>
-        <button
-          mat-stroked-button
-          class="text-dark border-dark rounded p-8"
-          *ngIf="currentPayment?.paymentStatus"
-          style="
-            border-radius: 4px;
-            font-family: Mulish;
-            border-radius: 4px;
-            font-weight: 700;
-          "
-        >
-          Retrigger Communication
-        </button>
+          <mat-icon style="font-size: 20px; margin-right: 8px; color: red">
+            report_problem
+          </mat-icon>
+          <p class="mb-0">
+            Payment has bounced. Please retrigger communication to notify the
+            customer.
+          </p>
+        </div>
+
+        <mat-divider class="dashed-divider m-3"></mat-divider>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end gap-2 p-3">
+          <button
+            mat-raised-button
+            class="btn-yellow text-dark rounded p-8"
+            *ngIf="currentPayment?.paidOn"
+            style="
+              background-color: #ffc107;
+              font-family: Mulish;
+              border-radius: 4px;
+              font-weight: 700;
+            "
+          >
+            Download Receipt
+          </button>
+          <button
+            mat-stroked-button
+            class="text-dark border-dark rounded p-8"
+            *ngIf="currentPayment?.paymentStatus"
+            style="border-radius: 4px; font-family: Mulish; font-weight: 700"
+          >
+            Retrigger Communication
+          </button>
+        </div>
       </div>
     </mat-card>
   </div>
