@@ -31,12 +31,14 @@
             Not Paid
           </span>
         </div>
-        <small class="text-muted"
-          >Last Updated - {{ payments.notpaid.lastUpdated }}</small
-        >
-        <mat-icon>
-          {{ isExpanded ? "expand_less" : "expand_more" }}
-        </mat-icon>
+        <div class="d-flex align-items-center gap-2">
+          <small class="text-muted"
+            >Last Updated - {{ payments.notpaid.lastUpdated }}</small
+          >
+          <mat-icon>
+            {{ isExpanded ? "expand_less" : "expand_more" }}
+          </mat-icon>
+        </div>
       </div>
       <div *ngIf="isExpanded">
         <mat-divider class="dashed-divider m-3"></mat-divider>
@@ -217,6 +219,7 @@
         <!-- Nested Gray Paper -->
         <mat-card class="inner-paper m-3 p-0">
           <div class="row m-0 p-3">
+            <!-- ASBA Registration Number -->
             <div
               class="col-md border-end"
               *ngIf="currentPayment?.asbaRegNumber"
@@ -227,6 +230,7 @@
               </p>
             </div>
 
+            <!-- Requested Amount -->
             <div
               class="col-md border-end"
               *ngIf="currentPayment?.requestedAmount"
@@ -235,6 +239,7 @@
               <p class="fw-bold">₹ {{ currentPayment.requestedAmount }}</p>
             </div>
 
+            <!-- Premium Amount -->
             <div
               class="col-md border-end"
               *ngIf="currentPayment?.premiumAmount"
@@ -243,13 +248,14 @@
               <p class="fw-bold">₹ {{ currentPayment.premiumAmount }}</p>
             </div>
 
+            <!-- Payment Mode -->
             <div class="col-md" *ngIf="currentPayment?.paymentMode">
               <p class="text-muted mb-1">Payment Mode</p>
               <p class="fw-bold">{{ currentPayment.paymentMode }}</p>
             </div>
           </div>
 
-          <!-- Expiry Date -->
+          <!-- Expiry Date (only if it exists AND not the last field) -->
           <ng-container *ngIf="currentPayment?.expiryDate">
             <mat-divider class="dashed-divider m-3"></mat-divider>
             <div class="row m-0 p-3">

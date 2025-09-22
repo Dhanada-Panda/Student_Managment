@@ -9,9 +9,14 @@
 } */
 .dashed-divider {
   border-top: 1px dashed rgba(0, 0, 0, 0.3) !important;
+  margin : 10px !important;
 }
 
 .custom-paper {
   background-color: #ffffff;
   border: 1px solid #cef0e8;
 }
+.inner-paper .row > div:last-child {
+  border-right: none !important;
+}
+
